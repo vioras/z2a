@@ -428,9 +428,24 @@ Azure CUIのazcopyコマンドについて
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Cell magic `%%ai` not found.
+<p><code class="docutils literal notranslate"><span class="pre">azcopy</span></code>は、Azure Storageへの大量のデータ転送を高速に行うためのコマンドラインツールです。<code class="docutils literal notranslate"><span class="pre">azcopy</span></code>を使用すると、Azure Storageとの間でデータをコピーしたり、移動したりすることができます。このツールは、高いパフォーマンスと信頼性を提供し、大規模なデータ転送を効率的に行うことができます。</p>
+<p><code class="docutils literal notranslate"><span class="pre">azcopy</span></code>は以下の主な機能を提供します：</p>
+<ul class="simple">
+<li><p>ローカルファイルシステムとAzure Blob Storage、Azure Files、Azure Table Storageの間のデータ転送</p></li>
+<li><p>Azure Storage Service間でのデータのコピー</p></li>
+<li><p>データ転送の並列処理と再試行機能</p></li>
+<li><p>データ転送の進行状況の表示</p></li>
+</ul>
+<p>基本的なコマンドの形式は以下のようになります：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>azcopy <span class="o">[</span>command<span class="o">]</span> <span class="o">[</span>arguments<span class="o">]</span> <span class="o">[</span>flags<span class="o">]</span>
 </pre></div>
 </div>
+<p>たとえば、ローカルファイルシステムからAzure Blob Storageにファイルを転送するためのコマンドは以下のようになります：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>azcopy cp <span class="s2">&quot;/path/to/local/file&quot;</span> <span class="s2">&quot;https://[account].blob.core.windows.net/[container]/[path/to/blob]&quot;</span>
+</pre></div>
+</div>
+<p>このコマンドは、ローカルファイルシステムから指定したAzure Blob Storageのコンテナにファイルをコピーします。</p>
+<p>なお、<code class="docutils literal notranslate"><span class="pre">azcopy</span></code>を使用する前に、Azure CLIをインストールし、<code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">login</span></code>コマンドを使用してAzureにログインする必要があります。また、データを転送するAzure Storageのアクセス許可も必要です。</p>
 </div>
 </div>
 <div class="cell docutils container">
