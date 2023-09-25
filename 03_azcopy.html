@@ -453,7 +453,12 @@ azcopyは&quot;az storage&quot;に置き換わるのですか？
 <h2>認証 (再認証する必要あり)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
 <div class="alert alert-success">
 <p>2023年9月現在、<code class="docutils literal notranslate"><span class="pre">azcopy</span></code> は標準とは異なるクレデンシャルキャッシュを参照しているため、再認証する必要があります。</p>
-</div><div class="cell docutils container">
+</div><ul class="simple">
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory#authorize-without-a-secret-store">Authorize access to blobs with AzCopy &amp; Azure Active Directory | Microsoft Learn</a></p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory">AzCopy と Azure Active Directory を使用して BLOB へのアクセスを承認する | Microsoft Learn</a></p></li>
+<li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/anonymous-read-access-configure?tabs=portal">コンテナーと BLOB の匿名パブリック読み取りアクセスを構成する - Azure Storage | Microsoft Learn</a></p></li>
+</ul>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>azcopy login status
 </pre></div>

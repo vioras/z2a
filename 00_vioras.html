@@ -384,11 +384,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">管理と利用申請</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ui">UI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authorized-access-anonymous-access">Authorized access, anonymous access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-api">Python API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-portal">Azure Portalで管理</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-storage-explorer">Azure Storage Explorerで操作</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errata">Errata</a></li>
 </ul>
             </nav>
@@ -408,8 +406,8 @@ document.write(`
 <ol class="arabic simple">
 <li><p>教材・資料の配備と配布</p>
 <ul>
-<li><p>教材・資料の配備: ローカルマシンのファイル・システムとの同期</p></li>
-<li><p>教材・資料の配付: JupyterHubのシングルユーザ・サーバとの同期</p></li>
+<li><p>配備: ローカルマシンのファイル・システムとの同期</p></li>
+<li><p>配付: JupyterHubのシングルユーザ・サーバとの同期</p></li>
 </ul>
 </li>
 <li><p>Python APIによるファイル操作</p></li>
@@ -439,6 +437,33 @@ document.write(`
 </ol>
 </li>
 </ul>
+<section id="id1">
+<h2>管理と利用申請<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>ECSのAzureサブスクリプション <code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code> のリソースグループ <code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code></p>
+<ul>
+<li><p>申請に基づきストレージアカウントを作成</p>
+<ul>
+<li><p>申請者の阪大IDの冒頭の <code class="docutils literal notranslate"><span class="pre">u</span></code> を　<code class="docutils literal notranslate"><span class="pre">ecsosaka</span></code> に置換して作成 (記号を除く英数字のみ)</p>
+<ul>
+<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">u416528d</span></code> → <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code></p></li>
+<li><p>role: “Storage Blob Data Contributor”</p></li>
+<li><p>必要に応じて role: “Storage Blob Data Reader” を持つユーザを追加</p></li>
+</ul>
+</li>
+<li><p>Configuration</p>
+<ul>
+<li><p>Performance: standard</p></li>
+<li><p>Blob access tier (default): Cool</p></li>
+<li><p>Allow Blob anonymous access: Enable</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="ui">
 <h2>UI<a class="headerlink" href="#ui" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
@@ -452,7 +477,7 @@ document.write(`
 <li><p><a class="reference external" href="https://github.com/microsoft/AzureStorageExplorer">GitHub - microsoft/AzureStorageExplorer: Easily manage the contents of your storage account with Azure Storage Explorer. Upload, download, and manage blobs, files, queues, tables, and Cosmos DB entities. Gain easy access to manage your virtual machine disks. Work with either Azure Resource Manager or classic storage accounts, plus manage and configure cross-origin resource sharing (CORS) rules.</a></p></li>
 </ul>
 </li>
-<li><p>VS Code Extension</p>
+<li><p>VS Code Extension (閲覧のみ)</p>
 <ul>
 <li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage">Azure Storage - Visual Studio Marketplace</a></p></li>
 </ul>
@@ -479,14 +504,6 @@ document.write(`
 </li>
 </ul>
 </section>
-<section id="authorized-access-anonymous-access">
-<h2>Authorized access, anonymous access<a class="headerlink" href="#authorized-access-anonymous-access" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory#authorize-without-a-secret-store">Authorize access to blobs with AzCopy &amp; Azure Active Directory | Microsoft Learn</a></p></li>
-<li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory">AzCopy と Azure Active Directory を使用して BLOB へのアクセスを承認する | Microsoft Learn</a></p></li>
-<li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/anonymous-read-access-configure?tabs=portal">コンテナーと BLOB の匿名パブリック読み取りアクセスを構成する - Azure Storage | Microsoft Learn</a></p></li>
-</ul>
-</section>
 <section id="python-api">
 <h2>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
@@ -496,43 +513,6 @@ document.write(`
 </ul>
 </li>
 <li><p><a class="reference external" href="https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-python?tabs=managed-identity%2Croles-azure-cli%2Csign-in-azure-cli">Quickstart: Azure Blob Storage client library for Python - Azure Storage | Microsoft Learn</a></p></li>
-</ul>
-</section>
-<section id="azure-portal">
-<h2>Azure Portalで管理<a class="headerlink" href="#azure-portal" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>ECSのAzureサブスクリプション (<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>)</p>
-<ul>
-<li><p>ストレージアカウントの作成</p>
-<ul>
-<li><p>申請者の阪大IDの冒頭の <code class="docutils literal notranslate"><span class="pre">u</span></code> を　<code class="docutils literal notranslate"><span class="pre">ecsosaka</span></code> に置換して作成</p>
-<ul>
-<li><p>e.g. <code class="docutils literal notranslate"><span class="pre">u416528d</span></code> → <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code></p></li>
-<li><p>role: “Storage Blob Data Contributor”</p></li>
-<li><p>必要に応じて role: “Storage Blob Data Reader” を持つユーザを追加</p></li>
-</ul>
-</li>
-<li><p>Configuration</p>
-<ul>
-<li><p>Performance: standard</p></li>
-<li><p>Blob access tier (default): Cool</p></li>
-<li><p>Allow Blob anonymous access: Enable</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</section>
-<section id="azure-storage-explorer">
-<h2>Azure Storage Explorerで操作<a class="headerlink" href="#azure-storage-explorer" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>VS Codeの　“Azure Storage Extension” でも閲覧が可能 (操作に制約)</p>
-<ul>
-<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestorage">Azure Storage - Visual Studio Marketplace</a></p></li>
-</ul>
-</li>
 </ul>
 </section>
 <section id="errata">
@@ -610,11 +590,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">管理と利用申請</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ui">UI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authorized-access-anonymous-access">Authorized access, anonymous access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-api">Python API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-portal">Azure Portalで管理</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azure-storage-explorer">Azure Storage Explorerで操作</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errata">Errata</a></li>
 </ul>
   </nav></div>
