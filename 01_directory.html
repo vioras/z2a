@@ -1,0 +1,1371 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Azure directory structure &#8212; Zero to Azure on VIORAS</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01_directory';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Blobの操作" href="02_blob_client.html" />
+    <link rel="prev" title="Azure Blob Storage" href="00_vioras.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="00_vioras.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_vioras.html">
+                    Azure Blob Storage
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Azure directory structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_blob_client.html">Blobの操作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_azcopy.html">AzCopy</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://ecsosaka-jh2300.japaneast.cloudapp.azure.com/hub/user-redirect/git-pull?repo=https%3A//github.com/vioras/z2azure&urlpath=lab/tree/z2azure/01_directory.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vioras/z2azure" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vioras/z2azure/issues/new?title=Issue%20on%20page%20%2F01_directory.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/01_directory.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Azure directory structure</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">テナントとサブスクリプション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">リソースグループとストレージアカウント</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">スコープとロール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">コンテナとBlob</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="azure-directory-structure">
+<h1>Azure directory structure<a class="headerlink" href="#azure-directory-structure" title="Permalink to this headline">#</a></h1>
+<p>Azureの管理データの構造を辿りながら、Azure Storageを利用するために必要となる概念を紹介します。</p>
+<div class="alert alert-success">
+<p><code class="docutils literal notranslate"><span class="pre">%%ai</span> <span class="pre">vioras</span></code>はIPythonのマジックコマンドです (<code class="docutils literal notranslate"><span class="pre">%%</span></code>に注意)。
+セル内の次行以降の文字列をプロンプトとしてChatGPTに送信し、レスポンスを表示します。
+VIORASでは、ノートブックを開く際に
+<a class="reference external" href="https://github.com/jupyterlab/jupyter-ai">jupyterlab/jupyter-ai: A generative AI extension for JupyterLab</a>
+のマジックコマンド機能拡張 <code class="docutils literal notranslate"><span class="pre">jupyter_ai_magics</span></code> をロードしています。
+さらに、VIORASが提供しているChatGPTサービス (Azure OpenAIのgpt-4-32kモデル) に接続する設定を行っています。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Cell magic `%%ai` not found.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+マネージドサービスとは？
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>マネージドサービスとは、ITインフラストラクチャやシステムの一部または全部を、サービスとして提供するものを指します。これには、ネットワーキング、サーバー、アプリケーション、データストレージなどの管理とメンテナンスが含まれます。</p>
+<p>マネージドサービスの提供者（MSP）は、組織が自身のIT運用を効率的に行い、そのビジネスに集中できるように支援します。具体的には、以下のような活動を担当することがあります：</p>
+<ul class="simple">
+<li><p><strong>システム管理と運用</strong>: MSPは、システムの日々の管理と運用を担当します。これには、システムの監視、パフォーマンス管理、セキュリティ管理、バックアップとリカバリなどが含まれます。</p></li>
+<li><p><strong>インフラストラクチャの設計と導入</strong>: MSPは、組織のITインフラストラクチャの設計と導入を支援します。これには、ネットワークの設計、サーバーの設定、ストレージシステムの導入などが含まれます。</p></li>
+<li><p><strong>ソフトウェアとアプリケーションの管理</strong>: MSPは、組織が使用するソフトウェアとアプリケーションのインストール、アップデート、パッチ適用、ライセンス管理などを行います。</p></li>
+<li><p><strong>テクニカルサポート</strong>: MSPは、IT問題に対するテクニカルサポートを提供します。これには、問題の診断と解決、ヘルプデスクサポートなどが含まれます。</p></li>
+</ul>
+<p>Azureのようなクラウドプロバイダーは、マネージドサービスの形式で多くのサービスを提供します。例えば、Azure SQL Databaseは、管理やメンテナンスをAzureが担当するマネージドなリレーショナルデータベースサービスです。これにより、組織はデータベースの運用管理にかかる時間と労力を大幅に削減できます。</p>
+</div>
+</div>
+<div class="alert alert-success">
+<p>以下、Azure CUI <code class="docutils literal notranslate"><span class="pre">az</span></code> コマンドを使って、Azureの管理データのディレクトリ構造を解説しますが、
+途中で利用しているストレージ拡張を自動的に導入するために、あらかじめ次の設定をしておきます。
+なお、行頭の<code class="docutils literal notranslate"><span class="pre">!</span></code>はシェルコマンドの実行です。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az config <span class="nb">set</span> extension.use_dynamic_install<span class="o">=</span>yes_without_prompt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;config&#39; is experimental and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>テナントとサブスクリプション<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureのテナントとアカウントについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azureにおける「テナント」と「アカウント」は、クラウドリソースへのアクセスを管理するための重要な概念です。</p>
+<p><strong>テナント (Tenant):</strong>
+Azureテナントは、Azure Active Directory (Azure AD) のインスタンスを指します。これは、組織が所有する、または組織固有のリソースを制御するための信頼性のあるドメインを表します。テナントは、ユーザー、グループ、およびアプリケーションのディレクトリの役割を果たし、各ユーザーまたはサービスが何にアクセスできるかを制御します。組織は1つ以上のテナントを持つことができ、各テナントは完全に独立しています。</p>
+<p><strong>アカウント (Account):</strong>
+Azureアカウントは、Azureサブスクリプションを作成するために使用するMicrosoftのアカウントを指します。アカウントは個々のユーザーやサービスに関連付けられ、これによってAzureリソースを購入し、それらを管理することができます。アカウントは、メールアドレス、パスワード、および連絡先情報で構成されます。</p>
+<p>これらの概念は、Azure環境のセキュリティと組織の管理の観点から重要です。テナントとアカウントを理解することで、リソースへのアクセスを適切に制御し、クラウド環境を安全に保つことができます。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureのサブスクリプションについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azureのサブスクリプションは、利用可能なAzure製品とサービスへのアクセスを提供し、それらの使用料を課金するための契約です。サブスクリプションを通じて、ユーザーはAzureリソースを作成、管理、および消費することができます。</p>
+<p>Azureサブスクリプションは、組織によっては複数存在し得て、それぞれが独自の利用料と制約を持つことができます。各サブスクリプションは、特定の組織、部門、プロジェクト、または個々のユーザーに関連付けられることが一般的です。</p>
+<p>サブスクリプションには以下のような特性があります：</p>
+<ul class="simple">
+<li><p><strong>アクセス管理とポリシー</strong>：Azureサブスクリプションは、リソースへのアクセスを管理し、特定のポリシーと制約を適用するための主要なスコープを提供します。これにより、組織は誰がどのリソースを利用できるかを詳細に制御することができます。</p></li>
+<li><p><strong>課金と支払い</strong>：各サブスクリプションは独自の課金と支払いの詳細を持ちます。これは、異なる部門やプロジェクトの利用状況を個別に追跡し、コストを管理するのに役立ちます。</p></li>
+<li><p><strong>利用制限とクォータ</strong>：Azureは、各サブスクリプションに対して特定のリソース利用制限またはクォータを設定します。これは、リソースの使用を制限し、予期しない課金を防ぐのに役立ちます。必要に応じてこれらの制限を増やすことも可能です。</p></li>
+</ul>
+<p>サブスクリプションの管理は、Azureポータル、Azure PowerShell、Azure CLIを通じて、またはAzure Management APIsを使用してプログラム的に行うことができます。</p>
+</div>
+</div>
+<div class="alert alert-success">
+<p><code class="docutils literal notranslate"><span class="pre">az</span></code>コマンドを用いると、現セッションの認証情報を表示できます。</p>
+<ul class="simple">
+<li><p>テナント: <code class="docutils literal notranslate"><span class="pre">OUMail</span> <span class="pre">(Osaka</span> <span class="pre">University)</span></code></p>
+<ul>
+<li><p>アカウント: e.g. <code class="docutils literal notranslate"><span class="pre">u416528d&#64;ecs.osaka-u.ac.jp</span></code></p></li>
+</ul>
+</li>
+<li><p>サブスクリプション: <code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code></p></li>
+</ul>
+<p>VIORASでは、ログイン時にAzureADのOAuth2認証を行っています。
+<code class="docutils literal notranslate"><span class="pre">az</span></code>コマンドやPython APIは、アクセストークンを共有しているため再認証は必要ありません。
+最後に紹介する<code class="docutils literal notranslate"><span class="pre">AzCopy</span></code>は、独自のアクセストークンを参照するため、再度、認証を行う必要があります。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{
+  &quot;environmentName&quot;: &quot;AzureCloud&quot;,
+  &quot;homeTenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+  &quot;id&quot;: &quot;a25ebad8-cf41-4969-ad5e-c9571a276106&quot;,
+  &quot;isDefault&quot;: true,
+  &quot;managedByTenants&quot;: [],
+  &quot;name&quot;: &quot;EDU-2022&quot;,
+  &quot;state&quot;: &quot;Enabled&quot;,
+  &quot;tenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+  &quot;user&quot;: {
+    &quot;name&quot;: &quot;u416528d@ecs.osaka-u.ac.jp&quot;,
+    &quot;type&quot;: &quot;user&quot;
+  }
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;id&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;a25ebad8-cf41-4969-ad5e-c9571a276106&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;name&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;EDU-2022&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;user.name&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;u416528d@ecs.osaka-u.ac.jp&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-success">
+<p>もし、上のようなアカウント情報が表示されない場合は、
+<code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">login</span> <span class="pre">--use-device-code</span></code>
+を実行して再認証して下さい。</p>
+<p>コマンドを実行すると
+<code class="docutils literal notranslate"><span class="pre">To</span> <span class="pre">sign</span> <span class="pre">in,</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">web</span> <span class="pre">browser</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">the</span> <span class="pre">page</span> <span class="pre">https://microsoft.com/devicelogin</span> <span class="pre">and</span> <span class="pre">enter</span> <span class="pre">the</span> <span class="pre">code</span> <span class="pre">XXXXXXXXX</span> <span class="pre">to</span> <span class="pre">authenticate.</span></code>
+のようにURLとコードが表示されます。
+URLをクリックするとブラウザがコードの入力画面に遷移するので、
+9桁のコードをコピー・ペーストしてください。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az login --use-device-code
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code IEYMZGBHW to authenticate.
+The following tenants require Multi-Factor Authentication (MFA). Use &#39;az login --tenant TENANT_ID&#39; to explicitly login to a tenant.
+20e3511d-7f82-40ef-b1c5-68d140db222e &#39;Cloudedu Osaka&#39;
+55e6a757-a6ea-4be3-97ba-4464c4d91896 &#39;既定のディレクトリ&#39;
+[
+  {
+    &quot;cloudName&quot;: &quot;AzureCloud&quot;,
+    &quot;homeTenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+    &quot;id&quot;: &quot;5abde0f8-480e-42a7-983d-f85f0dd87aa8&quot;,
+    &quot;isDefault&quot;: false,
+    &quot;managedByTenants&quot;: [],
+    &quot;name&quot;: &quot;Microsoft Azure Enterprise&quot;,
+    &quot;state&quot;: &quot;Enabled&quot;,
+    &quot;tenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+    &quot;user&quot;: {
+      &quot;name&quot;: &quot;u416528d@ecs.osaka-u.ac.jp&quot;,
+      &quot;type&quot;: &quot;user&quot;
+    }
+  },
+  {
+    &quot;cloudName&quot;: &quot;AzureCloud&quot;,
+    &quot;homeTenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+    &quot;id&quot;: &quot;a25ebad8-cf41-4969-ad5e-c9571a276106&quot;,
+    &quot;isDefault&quot;: true,
+    &quot;managedByTenants&quot;: [],
+    &quot;name&quot;: &quot;EDU-2022&quot;,
+    &quot;state&quot;: &quot;Enabled&quot;,
+    &quot;tenantId&quot;: &quot;00bc734c-1046-44ff-bb99-f4b01806d062&quot;,
+    &quot;user&quot;: {
+      &quot;name&quot;: &quot;u416528d@ecs.osaka-u.ac.jp&quot;,
+      &quot;type&quot;: &quot;user&quot;
+    }
+  },
+  {
+    &quot;cloudName&quot;: &quot;AzureCloud&quot;,
+    &quot;homeTenantId&quot;: &quot;885c7a52-09df-41e5-a3e1-a97f16c4e9dc&quot;,
+    &quot;id&quot;: &quot;ad976135-ea4a-4b4c-8761-329f4eaabc78&quot;,
+    &quot;isDefault&quot;: false,
+    &quot;managedByTenants&quot;: [],
+    &quot;name&quot;: &quot;by Prepay&quot;,
+    &quot;state&quot;: &quot;Enabled&quot;,
+    &quot;tenantId&quot;: &quot;885c7a52-09df-41e5-a3e1-a97f16c4e9dc&quot;,
+    &quot;user&quot;: {
+      &quot;name&quot;: &quot;u416528d@ecs.osaka-u.ac.jp&quot;,
+      &quot;type&quot;: &quot;user&quot;
+    }
+  }
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-success">
+<p>もし、サブスクリプションが<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>以外の場合は、
+次のコマンドで設定を変更します。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account <span class="nb">set</span> --subscription a25ebad8-cf41-4969-ad5e-c9571a276106
+</pre></div>
+</div>
+</div>
+</div>
+<div class="alert alert-success">
+<p>認証に関連して混乱している場合は、Azure Portal
+(<a class="reference external" href="https://portal.azure.com/#home">ホーム - Microsoft Azure</a>)
+の左肩をクリックするとログアウトして最初から認証をし直すことができます。
+JupyterHubの制限から、VIORASにはログアウト機能がありません。</p>
+</div></section>
+<section id="id2">
+<h2>リソースグループとストレージアカウント<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<div class="alert alert-success">
+<p>VIORASでは、サブスクリプション<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>にリソースグループ<code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code>を作成して構築管理しています。
+VIORASでBlobストレージを利用する際は、
+管理者がストレージアカウントを作成し、申請者のアカウントに権限を委譲する必要があります。</p>
+<ul class="simple">
+<li><p>リソースグループ: <code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code></p>
+<ul>
+<li><p>ストレージアカウント: e.g. <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureのリソースグループについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azureのリソースグループは、Azureリソースをまとめて管理するためのコンテナです。リソースグループは、リソースのライフサイクルを管理し、アクセス制御を提供し、課金を集約する役割を果たします。</p>
+<p>以下に、リソースグループの主な特性をいくつか挙げてみます：</p>
+<ol class="arabic simple">
+<li><p><strong>一貫性のある管理</strong>: リソースグループを使用すると、関連するリソースをまとめて一貫した方法で管理することが可能になります。これにより、設定、モニタリング、およびデプロイメントの一貫性が向上します。</p></li>
+<li><p><strong>ライフサイクル管理</strong>: 一連のリソースが共通のライフサイクルを共有する場合（例えば、特定のアプリケーションの一部として一緒にデプロイされ、更新され、削除される場合）、それらを同じリソースグループに配置することが理にかなっています。これにより、一連のリソースを単一の操作で作成または削除することができます。</p></li>
+<li><p><strong>アクセス制御</strong>: AzureのRole-Based Access Control (RBAC) を使用して、リソースグループレベルでのアクセスと権限を設定することができます。これにより、特定のユーザーまたはグループがリソースグループ内のリソースに対して何を行うことができるかを詳細に制御することが可能になります。</p></li>
+<li><p><strong>課金</strong>:  Azureはリソースグループレベルでの使用状況とコストを追跡し、それに基づいて課金します。これにより、特定のプロジェクトや部門のコストを追跡しやすくなります。</p></li>
+</ol>
+<p>リソースグループはAzureリソースのロジカルなコンテナであるため、リソースグループ自体がリソースを消費するわけではありません。そのため、リソースグループを作成してもコストは発生せず、リソースグループ内に含まれる個々のリソースの使用によってのみコストが発生します。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureのストレージアカウントについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azureのストレージアカウントは、Azure Storageサービスでデータを保存するための一種のコンテナです。ストレージアカウントは、Azure Storageで提供される4つのデータサービス、すなわちBlobストレージ（オブジェクトストレージ）、File Storage（共有ファイルストレージ）、Queue Storage（メッセージキューイングサービス）、およびTable Storage（NoSQLデータベースサービス）を利用するための基盤を提供します。</p>
+<p>以下に、ストレージアカウントの主な特性をいくつか挙げてみます：</p>
+<ol class="arabic simple">
+<li><p><strong>データアクセス</strong>: ストレージアカウントは、保存されたデータへのアクセスを管理します。アクセスは、共有キー、Azure Active Directory (Azure AD)、または匿名公開を介して制御することができます。</p></li>
+<li><p><strong>パフォーマンス</strong>: ストレージアカウントは、パフォーマンス要件に基づいて、「標準」（HDD）または「プレミアム」（SSD）のいずれかに設定することができます。プレミアムパフォーマンスは、IOが集中するワークロードに適しています。</p></li>
+<li><p><strong>アクセス層</strong>: ストレージアカウントでは、「ホット」、「クール」、「アーカイブ」の3つのアクセス層を選択できます。これらは、データのアクセス頻度と保存期間に応じて選択します。</p></li>
+<li><p><strong>レプリケーション</strong>: ストレージアカウントには、データ耐久性と可用性を確保するためのレプリケーションオプションがいくつかあります。これには、ローカル冗長ストレージ (LRS)、ゾーン冗長ストレージ (ZRS)、地理冗長ストレージ (GRS)、および読み取りアクセス可能な地理冗長ストレージ (RA-GRS) が含まれます。</p></li>
+<li><p><strong>セキュリティ</strong>: ストレージアカウントでは、データ暗号化、ネットワークルール、およびアクセスポリシーを通じて、データのセキュリティを確保できます。</p></li>
+</ol>
+<p>これらの設定と機能を通じて、ストレージアカウントはAzure Storageサービスの利用を柔軟に管理するための重要な役割を果たします。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot; --query &quot;id&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+&quot;/subscriptions/a25ebad8-cf41-4969-ad5e-c9571a276106/resourceGroups/JupyterHub-RG/providers/Microsoft.Storage/storageAccounts/ecsosaka416528d&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot; --query &quot;accessTier&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+&quot;Cool&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot; --query &quot;allowBlobPublicAccess&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot; --query &quot;primaryEndpoints&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+{
+  &quot;blob&quot;: &quot;https://ecsosaka416528d.blob.core.windows.net/&quot;,
+  &quot;dfs&quot;: &quot;https://ecsosaka416528d.dfs.core.windows.net/&quot;,
+  &quot;file&quot;: &quot;https://ecsosaka416528d.file.core.windows.net/&quot;,
+  &quot;internetEndpoints&quot;: null,
+  &quot;microsoftEndpoints&quot;: null,
+  &quot;queue&quot;: &quot;https://ecsosaka416528d.queue.core.windows.net/&quot;,
+  &quot;table&quot;: &quot;https://ecsosaka416528d.table.core.windows.net/&quot;,
+  &quot;web&quot;: &quot;https://ecsosaka416528d.z11.web.core.windows.net/&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+{
+  &quot;accessTier&quot;: &quot;Cool&quot;,
+  &quot;allowBlobPublicAccess&quot;: true,
+  &quot;allowCrossTenantReplication&quot;: false,
+  &quot;allowSharedKeyAccess&quot;: true,
+  &quot;allowedCopyScope&quot;: null,
+  &quot;azureFilesIdentityBasedAuthentication&quot;: null,
+  &quot;blobRestoreStatus&quot;: null,
+  &quot;creationTime&quot;: &quot;2023-09-22T13:09:51.852952+00:00&quot;,
+  &quot;customDomain&quot;: null,
+  &quot;defaultToOAuthAuthentication&quot;: false,
+  &quot;dnsEndpointType&quot;: &quot;Standard&quot;,
+  &quot;enableHttpsTrafficOnly&quot;: true,
+  &quot;enableNfsV3&quot;: null,
+  &quot;encryption&quot;: {
+    &quot;encryptionIdentity&quot;: null,
+    &quot;keySource&quot;: &quot;Microsoft.Storage&quot;,
+    &quot;keyVaultProperties&quot;: null,
+    &quot;requireInfrastructureEncryption&quot;: false,
+    &quot;services&quot;: {
+      &quot;blob&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;keyType&quot;: &quot;Account&quot;,
+        &quot;lastEnabledTime&quot;: &quot;2023-09-22T13:09:51.931055+00:00&quot;
+      },
+      &quot;file&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;keyType&quot;: &quot;Account&quot;,
+        &quot;lastEnabledTime&quot;: &quot;2023-09-22T13:09:51.931055+00:00&quot;
+      },
+      &quot;queue&quot;: null,
+      &quot;table&quot;: null
+    }
+  },
+  &quot;extendedLocation&quot;: null,
+  &quot;failoverInProgress&quot;: null,
+  &quot;geoReplicationStats&quot;: null,
+  &quot;id&quot;: &quot;/subscriptions/a25ebad8-cf41-4969-ad5e-c9571a276106/resourceGroups/JupyterHub-RG/providers/Microsoft.Storage/storageAccounts/ecsosaka416528d&quot;,
+  &quot;identity&quot;: null,
+  &quot;immutableStorageWithVersioning&quot;: null,
+  &quot;isHnsEnabled&quot;: null,
+  &quot;isLocalUserEnabled&quot;: null,
+  &quot;isSftpEnabled&quot;: null,
+  &quot;keyCreationTime&quot;: {
+    &quot;key1&quot;: &quot;2023-09-22T13:09:51.931055+00:00&quot;,
+    &quot;key2&quot;: &quot;2023-09-22T13:09:51.931055+00:00&quot;
+  },
+  &quot;keyPolicy&quot;: null,
+  &quot;kind&quot;: &quot;StorageV2&quot;,
+  &quot;largeFileSharesState&quot;: null,
+  &quot;lastGeoFailoverTime&quot;: null,
+  &quot;location&quot;: &quot;japaneast&quot;,
+  &quot;minimumTlsVersion&quot;: &quot;TLS1_2&quot;,
+  &quot;name&quot;: &quot;ecsosaka416528d&quot;,
+  &quot;networkRuleSet&quot;: {
+    &quot;bypass&quot;: &quot;AzureServices&quot;,
+    &quot;defaultAction&quot;: &quot;Allow&quot;,
+    &quot;ipRules&quot;: [],
+    &quot;resourceAccessRules&quot;: null,
+    &quot;virtualNetworkRules&quot;: []
+  },
+  &quot;primaryEndpoints&quot;: {
+    &quot;blob&quot;: &quot;https://ecsosaka416528d.blob.core.windows.net/&quot;,
+    &quot;dfs&quot;: &quot;https://ecsosaka416528d.dfs.core.windows.net/&quot;,
+    &quot;file&quot;: &quot;https://ecsosaka416528d.file.core.windows.net/&quot;,
+    &quot;internetEndpoints&quot;: null,
+    &quot;microsoftEndpoints&quot;: null,
+    &quot;queue&quot;: &quot;https://ecsosaka416528d.queue.core.windows.net/&quot;,
+    &quot;table&quot;: &quot;https://ecsosaka416528d.table.core.windows.net/&quot;,
+    &quot;web&quot;: &quot;https://ecsosaka416528d.z11.web.core.windows.net/&quot;
+  },
+  &quot;primaryLocation&quot;: &quot;japaneast&quot;,
+  &quot;privateEndpointConnections&quot;: [],
+  &quot;provisioningState&quot;: &quot;Succeeded&quot;,
+  &quot;publicNetworkAccess&quot;: &quot;Enabled&quot;,
+  &quot;resourceGroup&quot;: &quot;JupyterHub-RG&quot;,
+  &quot;routingPreference&quot;: null,
+  &quot;sasPolicy&quot;: null,
+  &quot;secondaryEndpoints&quot;: {
+    &quot;blob&quot;: &quot;https://ecsosaka416528d-secondary.blob.core.windows.net/&quot;,
+    &quot;dfs&quot;: &quot;https://ecsosaka416528d-secondary.dfs.core.windows.net/&quot;,
+    &quot;file&quot;: null,
+    &quot;internetEndpoints&quot;: null,
+    &quot;microsoftEndpoints&quot;: null,
+    &quot;queue&quot;: &quot;https://ecsosaka416528d-secondary.queue.core.windows.net/&quot;,
+    &quot;table&quot;: &quot;https://ecsosaka416528d-secondary.table.core.windows.net/&quot;,
+    &quot;web&quot;: &quot;https://ecsosaka416528d-secondary.z11.web.core.windows.net/&quot;
+  },
+  &quot;secondaryLocation&quot;: &quot;japanwest&quot;,
+  &quot;sku&quot;: {
+    &quot;name&quot;: &quot;Standard_RAGRS&quot;,
+    &quot;tier&quot;: &quot;Standard&quot;
+  },
+  &quot;statusOfPrimary&quot;: &quot;available&quot;,
+  &quot;statusOfSecondary&quot;: &quot;available&quot;,
+  &quot;storageAccountSkuConversionStatus&quot;: null,
+  &quot;tags&quot;: {},
+  &quot;type&quot;: &quot;Microsoft.Storage/storageAccounts&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>スコープとロール<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<div class="alert alert-success">
+<p>ロールは管理者が設定をするため、通常は意識する必要がありません。
+ただし、ストレージアカウントの操作に不具合がある場合に、
+適切なロールが割り当てられているかを確認する必要が生じる場合があります。</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+Azureのロールについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azureのロールは、AzureのRole-Based Access Control (RBAC) の一部で、特定のアクションを許可または拒否する権限を定義します。これにより、ユーザーやグループがAzureリソースに対してどのような操作を行うことができるかを定義し、制御することができます。</p>
+<p>Azureでは、ビルトインのロールとカスタムロールの2つのタイプのロールを提供しています：</p>
+<ol class="arabic simple">
+<li><p><strong>ビルトインのロール</strong>: これらはAzureによって事前に定義された一連のアクセス許可で、一般的なユースケースをカバーします。例えば、「Contributor」、「Reader」、「Owner」などがあります。</p></li>
+<li><p><strong>カスタムロール</strong>: これらは、特定のニーズに合わせてユーザーが作成するロールです。これにより、特定のリソースに対する非常に特定のアクションを許可または拒否することが可能になります。</p></li>
+</ol>
+<p>ロールは、特定のスコープ（管理グループ、サブスクリプション、リソースグループ、またはリソース）に割り当てることができます。ロール割り当ては、誰が（ユーザー、グループ、またはサービスプリンシパル）どのロールを持ち、どのスコープでそのロールを持つかを定義します。</p>
+<p>これにより、Azure RBACは、Azureリソースへのアクセスを詳細に制御し、最小権限の原則に基づいてアクセス権を付与することを可能にします。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage account show --resource-group &quot;JupyterHub-RG&quot; \
+    --name &quot;ecsosaka416528d&quot; --query &quot;id&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+&quot;/subscriptions/a25ebad8-cf41-4969-ad5e-c9571a276106/resourceGroups/JupyterHub-RG/providers/Microsoft.Storage/storageAccounts/ecsosaka416528d&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az role definition list \
+    --scope &quot;/subscriptions/a25ebad8-cf41-4969-ad5e-c9571a276106/resourceGroups/JupyterHub-RG/providers/Microsoft.Storage/storageAccounts/ecsosaka416528d&quot; \
+    --query &quot;[?contains(roleName,&#39;Storage Blob&#39;)].[roleName, description]&quot; -o tsv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Storage Blob Data Contributor	Allows for read, write and delete access to Azure Storage blob containers and data
+Storage Blob Data Owner	Allows for full access to Azure Storage blob containers and data, including assigning POSIX access control.
+Storage Blob Data Reader	Allows for read access to Azure Storage blob containers and data
+Storage Blob Delegator	Allows for generation of a user delegation key which can be used to sign SAS tokens
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az role assignment list \
+    --scope &quot;/subscriptions/a25ebad8-cf41-4969-ad5e-c9571a276106/resourceGroups/JupyterHub-RG/providers/Microsoft.Storage/storageAccounts/ecsosaka416528d&quot; \
+    --query &quot;[*].{user:principalName,role:roleDefinitionName}&quot; -o tsv
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u416528d@ecs.osaka-u.ac.jp	Storage Blob Data Contributor
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="blob">
+<h2>コンテナとBlob<a class="headerlink" href="#blob" title="Permalink to this headline">#</a></h2>
+<div class="alert alert-success">
+<p>ストレージアカウントに権限が割り当てられると、
+コンテナを作成することができるようになります。
+コンテナはBlobを格納することができます。
+VIORASでは、Blobは階層型ファイルシステムと同等のディレクトリ構造を持つことができ、
+GUI (Azure Storage Explorer) や CUI (AzCopy) を使うと、
+ローカルファイルシステムをそのまま同期することができます。</p>
+<ul class="simple">
+<li><p>コンテナ: e.g. <code class="docutils literal notranslate"><span class="pre">textbook-2023</span></code></p></li>
+</ul>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
+AzureストレージのコンテナとBlobについて
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<p>Azure Blob Storageは、大量の非構造化データを保存するためのオブジェクトストレージソリューションです。非構造化データとは、テキストやバイナリデータなどのメディアファイル、文書、バックアップデータ、ログファイルなどを指します。</p>
+<p><strong>Blob (Binary Large OBjects)</strong></p>
+<p>Blobは、大量のテキストまたはバイナリデータ（画像、音声、ビデオなど）を保存できます。Blobは、Azure Storageに保存されるデータの最小単位です。Blobには3つのタイプがあります：</p>
+<ol class="arabic simple">
+<li><p><strong>Block Blobs</strong>: テキストやバイナリデータの保存に最適で、最大約4.75TBのデータを保存できます。</p></li>
+<li><p><strong>Append Blobs</strong>: 主にログデータのような追加専用のパターンに対応しています。</p></li>
+<li><p><strong>Page Blobs</strong>: 頻繁にランダムにアクセスする必要がある大量のデータ（例えば、仮想ハードドライブなど）に適しています。</p></li>
+</ol>
+<p><strong>コンテナ</strong></p>
+<p>コンテナは、Blobのグループを保持するための「フォルダ」のようなものです。コンテナは、ストレージアカウント内でBlobsを整理するために使用されます。一つのストレージアカウント内には何百万ものコンテナを作成することができ、一つのコンテナ内には何百万ものBlobを保存できます。</p>
+<p>各コンテナとBlobは、一意の名前を持ち、これによりそれぞれのURLが生成されます。これにより、アプリケーションは特定のBlobに直接アクセスできます。</p>
+<p>Blob Storageは、大量の非構造化データを保存し、世界中のどこからでもアクセス可能にするための非常に効果的なソリューションです。また、ストリーミングビデオと音声、バックアップ、ロギング、アーカイブなどの用途にも広く使用されています。</p>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage container list --account-name &quot;ecsosaka416528d&quot; \
+    --query &quot;[*].[name]&quot; -o tsv --auth-mode login
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+textbook-2023
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage container list --account-name &quot;ecsosaka416528d&quot; \
+    --auth-mode login
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+[
+  {
+    &quot;deleted&quot;: null,
+    &quot;encryptionScope&quot;: {
+      &quot;defaultEncryptionScope&quot;: &quot;$account-encryption-key&quot;,
+      &quot;preventEncryptionScopeOverride&quot;: false
+    },
+    &quot;immutableStorageWithVersioningEnabled&quot;: false,
+    &quot;metadata&quot;: null,
+    &quot;name&quot;: &quot;textbook-2023&quot;,
+    &quot;properties&quot;: {
+      &quot;etag&quot;: &quot;\&quot;0x8DBBBEFA2B33100\&quot;&quot;,
+      &quot;hasImmutabilityPolicy&quot;: false,
+      &quot;hasLegalHold&quot;: false,
+      &quot;lastModified&quot;: &quot;2023-09-23T04:43:30+00:00&quot;,
+      &quot;lease&quot;: {
+        &quot;duration&quot;: null,
+        &quot;state&quot;: &quot;available&quot;,
+        &quot;status&quot;: &quot;unlocked&quot;
+      },
+      &quot;publicAccess&quot;: null
+    },
+    &quot;version&quot;: null
+  }
+]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!az storage blob list --account-name &quot;ecsosaka416528d&quot; \
+    --container-name &quot;textbook-2023&quot; --query &quot;[*].[name]&quot; -o tsv \
+    --auth-mode login
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Cyan">Command group &#39;az storage&#39; is in preview and under development. Reference and support levels: https://aka.ms/CLI_refstatus</span>
+chapters/.ipynb_checkpoints/1200-intro-checkpoint.ipynb
+chapters/.ipynb_checkpoints/1210-kepler_1-checkpoint.ipynb
+chapters/.ipynb_checkpoints/1220-kepler_2-checkpoint.ipynb
+chapters/.ipynb_checkpoints/1230-cycloid-checkpoint.ipynb
+chapters/.ipynb_checkpoints/1290-assignment-checkpoint.ipynb
+chapters/01/.ipynb_checkpoints/01_intro-checkpoint.ipynb
+chapters/01/.ipynb_checkpoints/02_openai-checkpoint.ipynb
+chapters/01/.ipynb_checkpoints/03_chatgpt-checkpoint.ipynb
+chapters/01/01_intro.ipynb
+chapters/01/02_openai.ipynb
+chapters/01/03_chatgpt.ipynb
+chapters/01/04_assignment.ipynb
+chapters/01/images/20230411.pptx
+chapters/01/images/fig-01.png
+chapters/01/images/fig-02.png
+chapters/01/images/fig-03.png
+chapters/01/images/fig-04.png
+chapters/01/images/fig-05.png
+chapters/01/images/fig-06.png
+chapters/01/images/fig-07.png
+chapters/01/images/fig-08.png
+chapters/01/images/fig-09.png
+chapters/01/images/fig-10.png
+chapters/01/images/fig-11.png
+chapters/01/images/fig-12.png
+chapters/01/images/fig-13.png
+chapters/01/images/fig-14.png
+chapters/01/images/fig-15.png
+chapters/01/intro_add.md
+chapters/01/intro_add_4.md
+chapters/01/intro_add_5.md
+chapters/01/intro_add_6.md
+chapters/02/01_orientation.ipynb
+chapters/02/02_assignment.ipynb
+chapters/02/03_examination.ipynb
+chapters/02/04_assignment.ipynb
+chapters/02/images/fig-2-01.png
+chapters/02/images/fig-2-02.png
+chapters/03/10_intro.ipynb
+chapters/03/20_assignment.ipynb
+chapters/03/21_similarities.ipynb
+chapters/03/22_dict.ipynb
+chapters/03/23_dict.ipynb
+chapters/03/40_positional.ipynb
+chapters/03/50_assignment.ipynb
+chapters/04/.ipynb_checkpoints/10_intro-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/20_pythagoras-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/22_dict-Copy1-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/23_dict-Copy1-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/40_egyptian_numerals-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/50_babylonican_numerals-checkpoint.ipynb
+chapters/04/.ipynb_checkpoints/90_assignment-checkpoint.ipynb
+chapters/04/10_intro.ipynb
+chapters/04/20_pythagoras.ipynb
+chapters/04/22_dict-Copy1.ipynb
+chapters/04/23_dict-Copy1.ipynb
+chapters/04/40_egyptian_numerals.ipynb
+chapters/04/50_babylonian_numerals.ipynb
+chapters/04/90_assignment.ipynb
+chapters/05/.ipynb_checkpoints/490_assignment-checkpoint.ipynb
+chapters/05/.ipynb_checkpoints/500_arche-checkpoint.ipynb
+chapters/05/.ipynb_checkpoints/510_octave-checkpoint.ipynb
+chapters/05/.ipynb_checkpoints/520_timbre-checkpoint.ipynb
+chapters/05/.ipynb_checkpoints/530_temperament-checkpoint.ipynb
+chapters/05/.ipynb_checkpoints/590_assignment-checkpoint.ipynb
+chapters/05/490_assignment.ipynb
+chapters/05/500_arche.ipynb
+chapters/05/510_octave.ipynb
+chapters/05/520_timbre.ipynb
+chapters/05/530_temperament.ipynb
+chapters/05/590_assignment.ipynb
+chapters/05/FMP_C1_F23_Flute.wav
+chapters/05/FMP_C1_F23_Piano.wav
+chapters/05/FMP_C1_F23_Trumpet.wav
+chapters/05/FMP_C1_F23_Violin.wav
+chapters/05/FMP_C1_Scale-Cmajor_Piano.mp3
+chapters/05/FMP_C1_Scale-Cmajor_Piano.wav
+chapters/06/.ipynb_checkpoints/590_assignment-Copy1-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/610_intro-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/620_timbre-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/650_optimization-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/660_combination-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/661_combination-checkpoint.ipynb
+chapters/06/.ipynb_checkpoints/662_combination-checkpoint.ipynb
+chapters/06/590_assignment-Copy1.ipynb
+chapters/06/610_intro.ipynb
+chapters/06/620_timbre.ipynb
+chapters/06/650_optimization.ipynb
+chapters/06/660_combination.ipynb
+chapters/06/661_combination.ipynb
+chapters/06/662_combination.ipynb
+chapters/07/.ipynb_checkpoints/662_combination-Copy1-checkpoint.ipynb
+chapters/07/.ipynb_checkpoints/701_plimpton322-checkpoint.ipynb
+chapters/07/.ipynb_checkpoints/702_plimpton322-checkpoint.ipynb
+chapters/07/.ipynb_checkpoints/710_intro-checkpoint.ipynb
+chapters/07/.ipynb_checkpoints/720_assignment-checkpoint.ipynb
+chapters/07/.ipynb_checkpoints/fig-2-checkpoint.jpeg
+chapters/07/662_combination-Copy1.ipynb
+chapters/07/701_plimpton322.ipynb
+chapters/07/702_plimpton322.ipynb
+chapters/07/710_intro.ipynb
+chapters/07/720_assignment.ipynb
+chapters/07/fig-2.jpeg
+chapters/07/fig-3.jpeg
+chapters/08/.ipynb_checkpoints/720_assignment-Copy1-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/721_assignment-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/800_assignment-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/801_ybc7289-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/802_ybc7289-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/810_intro-checkpoint.ipynb
+chapters/08/.ipynb_checkpoints/830_assignment-checkpoint.ipynb
+chapters/08/720_assignment-Copy1.ipynb
+chapters/08/721_assignment.ipynb
+chapters/08/800_assignment.ipynb
+chapters/08/801_ybc7289.ipynb
+chapters/08/802_ybc7289.ipynb
+chapters/08/810_intro.ipynb
+chapters/08/830_assignment.ipynb
+chapters/09/.ipynb_checkpoints/810_intro-Copy1-checkpoint.ipynb
+chapters/09/.ipynb_checkpoints/830_assignment-Copy1-checkpoint.ipynb
+chapters/09/.ipynb_checkpoints/902-checkpoint.ipynb
+chapters/09/810_intro-Copy1.ipynb
+chapters/09/830_assignment-Copy1.ipynb
+chapters/09/902.ipynb
+chapters/10/.ipynb_checkpoints/1090_assignment-checkpoint.ipynb
+chapters/10/1090_assignment.ipynb
+chapters/11/.ipynb_checkpoints/1091_assignment-checkpoint.ipynb
+chapters/11/.ipynb_checkpoints/1190_assignment-checkpoint.ipynb
+chapters/11/1091_assignment.ipynb
+chapters/11/1190_assignment.ipynb
+chapters/12/.ipynb_checkpoints/1200-intro-checkpoint.ipynb
+chapters/12/.ipynb_checkpoints/1210-kepler_1-checkpoint.ipynb
+chapters/12/.ipynb_checkpoints/1220-kepler_2-checkpoint.ipynb
+chapters/12/.ipynb_checkpoints/1230-cycloid-checkpoint.ipynb
+chapters/12/.ipynb_checkpoints/1290-assignment-checkpoint.ipynb
+chapters/12/1190_assignment.ipynb
+chapters/12/1200-intro.ipynb
+chapters/12/1210-kepler_1.ipynb
+chapters/12/1220-kepler_2.ipynb
+chapters/12/1230-cycloid.ipynb
+chapters/12/1290-assignment.ipynb
+chapters/13/.ipynb_checkpoints/1220-kepler_2-Copy1-checkpoint.ipynb
+chapters/13/.ipynb_checkpoints/1230-cycloid-Copy1-checkpoint.ipynb
+chapters/13/.ipynb_checkpoints/1290-assignment-Copy1-checkpoint.ipynb
+chapters/13/.ipynb_checkpoints/1360-dncl-checkpoint.ipynb
+chapters/13/.ipynb_checkpoints/1370-2008-checkpoint.ipynb
+chapters/13/1220-kepler_2-Copy1.ipynb
+chapters/13/1230-cycloid-Copy1.ipynb
+chapters/13/1290-assignment-Copy1.ipynb
+chapters/13/1360-dncl.ipynb
+chapters/13/1370-2008.ipynb
+chapters/13/fig-11.png
+chapters/13/fig-12.png
+chapters/13/fig-21.png
+chapters/13/fig-22.png
+chapters/13/fig-23.png
+chapters/13/fig-24.png
+chapters/13/fig-25.png
+chapters/13/fig-26.png
+chapters/14/.ipynb_checkpoints/1400-intro-checkpoint.ipynb
+chapters/14/.ipynb_checkpoints/1410-2010#1-checkpoint.ipynb
+chapters/14/.ipynb_checkpoints/1420-2010#2-checkpoint.ipynb
+chapters/14/.ipynb_checkpoints/1430-2010#2-checkpoint.ipynb
+chapters/14/.ipynb_checkpoints/1470-2010#3-checkpoint.ipynb
+chapters/14/1400-intro.ipynb
+chapters/14/1410-2010_1.ipynb
+chapters/14/1420-2010_2.ipynb
+chapters/14/1430-2010_2.ipynb
+chapters/14/1470-2010_3.ipynb
+chapters/14/fig-01.png
+chapters/14/fig-02.png
+chapters/14/fig-03.png
+chapters/14/fig-04.png
+chapters/14/fig-05.png
+chapters/14/fig-06.png
+chapters/15/.ipynb_checkpoints/1510-intro-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1520-newton-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1530-diffgeom-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1540-curvature-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1550-metric-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1560-field_equation-checkpoint.ipynb
+chapters/15/.ipynb_checkpoints/1570-geodesic-checkpoint.ipynb
+chapters/15/1510-intro.ipynb
+chapters/15/1520-newton.ipynb
+chapters/15/1530-diffgeom.ipynb
+chapters/15/1540-curvature.ipynb
+chapters/15/1550-metric.ipynb
+chapters/15/1560-field_equation.ipynb
+chapters/15/1570-geodesic.ipynb
+chapters/intro.md
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00_vioras.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Azure Blob Storage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_blob_client.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Blobの操作</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">テナントとサブスクリプション</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">リソースグループとストレージアカウント</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">スコープとロール</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">コンテナとBlob</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Manabu Higashida
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
