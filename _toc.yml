@@ -2,8 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: 00_vioras.ipynb
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
+- file: 01_directory.ipynb
+- file: 02_blob_client.ipynb
+- file: 03_azcopy.ipynb
