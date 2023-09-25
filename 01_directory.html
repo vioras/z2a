@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '01_directory';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Blobの操作" href="02_blob_client.html" />
+    <link rel="next" title="Blob operation using Python API" href="02_blob_client.html" />
     <link rel="prev" title="Azure Blob Storage" href="00_vioras.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -158,8 +158,8 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_vioras.html">Azure Blob Storage</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Azure directory structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_blob_client.html">Blobの操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_azcopy.html">AzCopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_blob_client.html">Blob operation using Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_azcopy.html">Blob sync by AzCopy</a></li>
 </ul>
 
     </div>
@@ -402,14 +402,16 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="azure-directory-structure">
 <h1>Azure directory structure<a class="headerlink" href="#azure-directory-structure" title="Permalink to this headline">#</a></h1>
 <p>Azureの管理データの構造を辿りながら、Azure Storageを利用するために必要となる概念を紹介します。</p>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">%%ai</span> <span class="pre">vioras</span></code>はIPythonのマジックコマンドです (<code class="docutils literal notranslate"><span class="pre">%%</span></code>に注意)。
 セル内の次行以降の文字列をプロンプトとしてChatGPTに送信し、レスポンスを表示します。
 VIORASでは、ノートブックを開く際に
 <a class="reference external" href="https://github.com/jupyterlab/jupyter-ai">jupyterlab/jupyter-ai: A generative AI extension for JupyterLab</a>
 のマジックコマンド機能拡張 <code class="docutils literal notranslate"><span class="pre">jupyter_ai_magics</span></code> をロードしています。
 さらに、VIORASが提供しているChatGPTサービス (Azure OpenAIのgpt-4-32kモデル) に接続する設定を行っています。</p>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
 Azureについて
@@ -449,11 +451,13 @@ Azureについて
 <p>Azureのようなクラウドプロバイダーは、マネージドサービスの形式で多くのサービスを提供します。例えば、Azure SQL Databaseは、管理やメンテナンスをAzureが担当するマネージドなリレーショナルデータベースサービスです。これにより、組織はデータベースの運用管理にかかる時間と労力を大幅に削減できます。</p>
 </div>
 </div>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>以下、Azure CUI <code class="docutils literal notranslate"><span class="pre">az</span></code> コマンドを使って、Azureの管理データのディレクトリ構造を解説しますが、
 途中で利用しているストレージ拡張を自動的に導入するために、あらかじめ次の設定をしておきます。
 なお、行頭の<code class="docutils literal notranslate"><span class="pre">!</span></code>はシェルコマンドの実行です。</p>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az config <span class="nb">set</span> extension.use_dynamic_install<span class="o">=</span>yes_without_prompt
 </pre></div>
@@ -502,7 +506,8 @@ Azureのサブスクリプションについて
 <p>サブスクリプションの管理は、Azureポータル、Azure PowerShell、Azure CLIを通じて、またはAzure Management APIsを使用してプログラム的に行うことができます。</p>
 </div>
 </div>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">az</span></code>コマンドを用いると、現セッションの認証情報を表示できます。</p>
 <ul class="simple">
 <li><p>テナント: <code class="docutils literal notranslate"><span class="pre">OUMail</span> <span class="pre">(Osaka</span> <span class="pre">University)</span></code></p>
@@ -515,7 +520,8 @@ Azureのサブスクリプションについて
 <p>VIORASでは、ログイン時にAzureADのOAuth2認証を行っています。
 <code class="docutils literal notranslate"><span class="pre">az</span></code>コマンドやPython APIは、アクセストークンを共有しているため再認証は必要ありません。
 最後に紹介する<code class="docutils literal notranslate"><span class="pre">AzCopy</span></code>は、独自のアクセストークンを参照するため、再度、認証を行う必要があります。</p>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show 
 </pre></div>
@@ -576,7 +582,8 @@ Azureのサブスクリプションについて
 </div>
 </div>
 </div>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>もし、上のようなアカウント情報が表示されない場合は、
 <code class="docutils literal notranslate"><span class="pre">az</span> <span class="pre">login</span> <span class="pre">--use-device-code</span></code>
 を実行して再認証して下さい。</p>
@@ -585,7 +592,8 @@ Azureのサブスクリプションについて
 のようにURLとコードが表示されます。
 URLをクリックするとブラウザがコードの入力画面に遷移するので、
 9桁のコードをコピー・ペーストしてください。</p>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az login --use-device-code
 </pre></div>
@@ -644,36 +652,43 @@ The following tenants require Multi-Factor Authentication (MFA). Use &#39;az log
 </div>
 </div>
 </div>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>もし、サブスクリプションが<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>以外の場合は、
 次のコマンドで設定を変更します。</p>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account <span class="nb">set</span> --subscription a25ebad8-cf41-4969-ad5e-c9571a276106
 </pre></div>
 </div>
 </div>
 </div>
-<div class="alert alert-success">
-<p>認証に関連して混乱している場合は、Azure Portal
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>認証に関連してシステムが混乱していると思われる場合は、Azure Portal
 (<a class="reference external" href="https://portal.azure.com/#home">ホーム - Microsoft Azure</a>)
 の左肩をクリックするとログアウトして最初から認証をし直すことができます。
 JupyterHubの制限から、VIORASにはログアウト機能がありません。</p>
-</div></section>
+</div>
+</section>
 <section id="id2">
 <h2>リソースグループとストレージアカウント<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>VIORASでは、サブスクリプション<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>にリソースグループ<code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code>を作成して構築管理しています。
 VIORASでBlobストレージを利用する際は、
 管理者がストレージアカウントを作成し、申請者のアカウントに権限を委譲する必要があります。</p>
 <ul class="simple">
 <li><p>リソースグループ: <code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code></p>
 <ul>
-<li><p>ストレージアカウント: e.g. <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code></p></li>
+<li><p>ストレージアカウント: e.g. <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code>
+{note}</p></li>
 </ul>
 </li>
 </ul>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
 Azureのリソースグループについて
@@ -892,11 +907,7 @@ true
 </section>
 <section id="id3">
 <h2>スコープとロール<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-<div class="alert alert-success">
-<p>ロールは管理者が設定をするため、通常は意識する必要がありません。
-ただし、ストレージアカウントの操作に不具合がある場合に、
-適切なロールが割り当てられているかを確認する必要が生じる場合があります。</p>
-</div><div class="cell docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
 Azureのロールについて
@@ -962,7 +973,8 @@ Storage Blob Delegator	Allows for generation of a user delegation key which can 
 </section>
 <section id="blob">
 <h2>コンテナとBlob<a class="headerlink" href="#blob" title="Permalink to this headline">#</a></h2>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>ストレージアカウントに権限が割り当てられると、
 コンテナを作成することができるようになります。
 コンテナはBlobを格納することができます。
@@ -972,7 +984,8 @@ GUI (Azure Storage Explorer) や CUI (AzCopy) を使うと、
 <ul class="simple">
 <li><p>コンテナ: e.g. <code class="docutils literal notranslate"><span class="pre">textbook-2023</span></code></p></li>
 </ul>
-</div><div class="cell docutils container">
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
 AzureストレージのコンテナとBlobについて
@@ -1298,7 +1311,7 @@ chapters/intro.md
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Blobの操作</p>
+        <p class="prev-next-title">Blob operation using Python API</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

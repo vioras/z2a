@@ -384,6 +384,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">認証 (再認証する必要あり)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">Blobのリスト</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ローカルのファイル・システムとBlobの同期</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errata">Errata</a></li>
 </ul>
             </nav>
@@ -466,9 +468,11 @@ azcopyは&quot;az storage&quot;に置き換わるのですか？
 </div>
 <section id="id1">
 <h2>認証 (再認証する必要あり)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<div class="alert alert-success">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>2023年9月現在、<code class="docutils literal notranslate"><span class="pre">azcopy</span></code> は標準とは異なるクレデンシャルキャッシュを参照しているため、再認証する必要があります。</p>
-</div><ul class="simple">
+</div>
+<ul class="simple">
 <li><p><a class="reference external" href="https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory#authorize-without-a-secret-store">Authorize access to blobs with AzCopy &amp; Azure Active Directory | Microsoft Learn</a></p></li>
 <li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/common/storage-use-azcopy-authorize-azure-active-directory">AzCopy と Azure Active Directory を使用して BLOB へのアクセスを承認する | Microsoft Learn</a></p></li>
 <li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/anonymous-read-access-configure?tabs=portal">コンテナーと BLOB の匿名パブリック読み取りアクセスを構成する - Azure Storage | Microsoft Learn</a></p></li>
@@ -514,6 +518,9 @@ INFO: Login succeeded.
 </div>
 </div>
 </div>
+</section>
+<section id="blob">
+<h2>Blobのリスト<a class="headerlink" href="#blob" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>azcopy list <span class="s2">&quot;https://ecsosaka416528d.blob.core.windows.net/textbook-2023/chapters/01&quot;</span>
@@ -554,6 +561,9 @@ INFO: images/fig-15.png;  Content Length: 149.57 KiB
 </div>
 </div>
 </div>
+</section>
+<section id="id2">
+<h2>ローカルのファイル・システムとBlobの同期<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>!azcopy sync \
@@ -657,6 +667,8 @@ Final Job Status: Completed
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">認証 (再認証する必要あり)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">Blobのリスト</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">ローカルのファイル・システムとBlobの同期</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#errata">Errata</a></li>
 </ul>
   </nav></div>
