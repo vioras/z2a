@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Blob operation using Python API &#8212; Zero to Azure on VIORAS</title>
+    <title>Storage Blob operation using Python API &#8212; Zero to Azure on VIORAS</title>
   
   
   
@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_vioras.html">Azure Blob Storage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="01_directory.html">Azure directory structure</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Blob operation using Python API</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Storage Blob operation using Python API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_azcopy.html">Blob sync by AzCopy</a></li>
 </ul>
 
@@ -374,7 +374,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Blob operation using Python API</h1>
+    <h1>Storage Blob operation using Python API</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,7 +386,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob-azure-storage">Blobのアップロード (ローカルのファイル・システムからAzure Storageへ)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob-azure-storagejupyterhub">Blobのダウンロードとロード (Azure StorageからJupyterHubのシングルユーザ・サーバへ)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobserviceclient">BlobServiceClientを作成する (キャッシュされたトークンで認証して)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobserviceclient">BlobServiceClientを作成する (キャッシュされたトークンで認証)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobclient">BlobClientを作成する</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON形式のファイルをロードする</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">CSV形式のファイルをダウンロードする</a></li>
@@ -408,8 +408,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="blob-operation-using-python-api">
-<h1>Blob operation using Python API<a class="headerlink" href="#blob-operation-using-python-api" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="storage-blob-operation-using-python-api">
+<h1>Storage Blob operation using Python API<a class="headerlink" href="#storage-blob-operation-using-python-api" title="Permalink to this headline">#</a></h1>
 <section id="blob-azure-storage">
 <h2>Blobのアップロード (ローカルのファイル・システムからAzure Storageへ)<a class="headerlink" href="#blob-azure-storage" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
@@ -455,7 +455,7 @@ document.write(`
 <li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/storage-blob-download-python">Python を使用して BLOB をダウンロードする - Azure Storage | Microsoft Learn</a></p></li>
 </ul>
 <section id="blobserviceclient">
-<h3>BlobServiceClientを作成する (キャッシュされたトークンで認証して)<a class="headerlink" href="#blobserviceclient" title="Permalink to this headline">#</a></h3>
+<h3>BlobServiceClientを作成する (キャッシュされたトークンで認証)<a class="headerlink" href="#blobserviceclient" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">azure.identity</span> <span class="kn">import</span> <span class="n">DefaultAzureCredential</span>
@@ -842,7 +842,7 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob-azure-storage">Blobのアップロード (ローカルのファイル・システムからAzure Storageへ)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blob-azure-storagejupyterhub">Blobのダウンロードとロード (Azure StorageからJupyterHubのシングルユーザ・サーバへ)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobserviceclient">BlobServiceClientを作成する (キャッシュされたトークンで認証して)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobserviceclient">BlobServiceClientを作成する (キャッシュされたトークンで認証)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blobclient">BlobClientを作成する</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON形式のファイルをロードする</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">CSV形式のファイルをダウンロードする</a></li>
