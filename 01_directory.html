@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -63,10 +65,10 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '01_directory';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Blob operation using Python API" href="02_blob_client.html" />
+    <link rel="next" title="Storage Blob operation using Python API" href="02_blob_client.html" />
     <link rel="prev" title="Azure Blob Storage" href="00_vioras.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -75,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -140,8 +151,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/vioras-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/vioras-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -158,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="00_vioras.html">Azure Blob Storage</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Azure directory structure</a></li>
-<li class="toctree-l1"><a class="reference internal" href="02_blob_client.html">Blob operation using Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_blob_client.html">Storage Blob operation using Python API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="03_azcopy.html">Blob sync by AzCopy</a></li>
 </ul>
 
@@ -346,10 +357,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -357,7 +368,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -400,7 +411,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="azure-directory-structure">
-<h1>Azure directory structure<a class="headerlink" href="#azure-directory-structure" title="Permalink to this headline">#</a></h1>
+<h1>Azure directory structure<a class="headerlink" href="#azure-directory-structure" title="Permalink to this heading">#</a></h1>
 <p>Azureの管理データの構造を辿りながら、Azure Storageを利用するために必要となる概念を紹介します。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -459,7 +470,7 @@ Azureについて
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az config <span class="nb">set</span> extension.use_dynamic_install<span class="o">=</span>yes_without_prompt
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>extension.use_dynamic_install<span class="o">=</span>yes_without_prompt
 </pre></div>
 </div>
 </div>
@@ -470,7 +481,7 @@ Azureについて
 </div>
 </div>
 <section id="id1">
-<h2>テナントとサブスクリプション<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>テナントとサブスクリプション<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
@@ -523,7 +534,7 @@ Azureのサブスクリプションについて
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>
 </pre></div>
 </div>
 </div>
@@ -548,7 +559,7 @@ Azureのサブスクリプションについて
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;id&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;id&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -560,7 +571,7 @@ Azureのサブスクリプションについて
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;name&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;name&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -572,7 +583,7 @@ Azureのサブスクリプションについて
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account show --query <span class="s2">&quot;user.name&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>account<span class="w"> </span>show<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;user.name&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -595,7 +606,7 @@ URLをクリックするとブラウザがコードの入力画面に遷移す�
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az login --use-device-code
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>login<span class="w"> </span>--use-device-code
 </pre></div>
 </div>
 </div>
@@ -659,7 +670,7 @@ The following tenants require Multi-Factor Authentication (MFA). Use &#39;az log
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az account <span class="nb">set</span> --subscription a25ebad8-cf41-4969-ad5e-c9571a276106
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>az<span class="w"> </span>account<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--subscription<span class="w"> </span>a25ebad8-cf41-4969-ad5e-c9571a276106
 </pre></div>
 </div>
 </div>
@@ -673,7 +684,7 @@ JupyterHubの制限から、VIORASにはログアウト機能がありません�
 </div>
 </section>
 <section id="id2">
-<h2>リソースグループとストレージアカウント<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<h2>リソースグループとストレージアカウント<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>VIORASでは、サブスクリプション<code class="docutils literal notranslate"><span class="pre">EDU-2022</span></code>にリソースグループ<code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code>を作成して構築管理しています。
@@ -682,8 +693,7 @@ VIORASでBlobストレージを利用する際は、
 <ul class="simple">
 <li><p>リソースグループ: <code class="docutils literal notranslate"><span class="pre">JupyterHub-RG</span></code></p>
 <ul>
-<li><p>ストレージアカウント: e.g. <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code>
-{note}</p></li>
+<li><p>ストレージアカウント: e.g. <code class="docutils literal notranslate"><span class="pre">ecsosaka416528d</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -906,7 +916,13 @@ true
 </div>
 </section>
 <section id="id3">
-<h2>スコープとロール<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<h2>スコープとロール<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ロールは管理者が設定をするため、通常は意識する必要がありません。
+ただし、ストレージアカウントの操作に不具合がある場合に、
+適切なロールが割り当てられているかを確認する必要が生じる場合があります。</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">ai</span> vioras
@@ -972,7 +988,7 @@ Storage Blob Delegator	Allows for generation of a user delegation key which can 
 </div>
 </section>
 <section id="blob">
-<h2>コンテナとBlob<a class="headerlink" href="#blob" title="Permalink to this headline">#</a></h2>
+<h2>コンテナとBlob<a class="headerlink" href="#blob" title="Permalink to this heading">#</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>ストレージアカウントに権限が割り当てられると、
@@ -1291,11 +1307,10 @@ chapters/intro.md
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="00_vioras.html"
@@ -1311,14 +1326,11 @@ chapters/intro.md
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Blob operation using Python API</p>
+        <p class="prev-next-title">Storage Blob operation using Python API</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1351,7 +1363,7 @@ chapters/intro.md
   <div class="footer-item">
     
 <p class="component-author">
-By Manabu Higashida
+By Manabu Higashida, Cybermedia Center, Osaka University, Japan
 </p>
 
   </div>
@@ -1384,8 +1396,8 @@ By Manabu Higashida
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>

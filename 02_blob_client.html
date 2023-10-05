@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,12 +38,14 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
@@ -66,7 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="Blob sync by AzCopy" href="03_azcopy.html" />
     <link rel="prev" title="Azure directory structure" href="01_directory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -75,6 +77,15 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -140,8 +151,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/vioras-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/vioras-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -346,10 +357,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
@@ -357,7 +368,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -409,9 +420,9 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="storage-blob-operation-using-python-api">
-<h1>Storage Blob operation using Python API<a class="headerlink" href="#storage-blob-operation-using-python-api" title="Permalink to this headline">#</a></h1>
+<h1>Storage Blob operation using Python API<a class="headerlink" href="#storage-blob-operation-using-python-api" title="Permalink to this heading">#</a></h1>
 <section id="blob-azure-storage">
-<h2>Blobのアップロード (ローカルのファイル・システムからAzure Storageへ)<a class="headerlink" href="#blob-azure-storage" title="Permalink to this headline">#</a></h2>
+<h2>Blobのアップロード (ローカルのファイル・システムからAzure Storageへ)<a class="headerlink" href="#blob-azure-storage" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>GUI: Azure Storage Explorer</p>
 <ul>
@@ -422,7 +433,7 @@ document.write(`
 </ul>
 </section>
 <section id="blob-azure-storagejupyterhub">
-<h2>Blobのダウンロードとロード (Azure StorageからJupyterHubのシングルユーザ・サーバへ)<a class="headerlink" href="#blob-azure-storagejupyterhub" title="Permalink to this headline">#</a></h2>
+<h2>Blobのダウンロードとロード (Azure StorageからJupyterHubのシングルユーザ・サーバへ)<a class="headerlink" href="#blob-azure-storagejupyterhub" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>CUI: AzCopy (後述)</p></li>
 <li><p>Python API</p>
@@ -455,7 +466,7 @@ document.write(`
 <li><p><a class="reference external" href="https://learn.microsoft.com/ja-jp/azure/storage/blobs/storage-blob-download-python">Python を使用して BLOB をダウンロードする - Azure Storage | Microsoft Learn</a></p></li>
 </ul>
 <section id="blobserviceclient">
-<h3>BlobServiceClientを作成する (キャッシュされたトークンで認証)<a class="headerlink" href="#blobserviceclient" title="Permalink to this headline">#</a></h3>
+<h3>BlobServiceClientを作成する (キャッシュされたトークンで認証)<a class="headerlink" href="#blobserviceclient" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">azure.identity</span> <span class="kn">import</span> <span class="n">DefaultAzureCredential</span>
@@ -477,13 +488,13 @@ document.write(`
 </div>
 </section>
 <section id="blobclient">
-<h3>BlobClientを作成する<a class="headerlink" href="#blobclient" title="Permalink to this headline">#</a></h3>
+<h3>BlobClientを作成する<a class="headerlink" href="#blobclient" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://learn.microsoft.com/en-us/python/api/azure-storage-blob/azure.storage.blob.blobclient?view=azure-python#azure-storage-blob-blobclient-download-blob">azure.storage.blob.BlobClient class | Microsoft Learn</a></p></li>
 <li><p><a class="reference external" href="https://learn.microsoft.com/en-us/python/api/azure-storage-blob/azure.storage.blob.storagestreamdownloader?view=azure-python">azure.storage.blob.StorageStreamDownloader class | Microsoft Learn</a></p></li>
 </ul>
 <section id="json">
-<h4>JSON形式のファイルをロードする<a class="headerlink" href="#json" title="Permalink to this headline">#</a></h4>
+<h4>JSON形式のファイルをロードする<a class="headerlink" href="#json" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">container_name</span><span class="o">=</span><span class="s2">&quot;textbook-2023&quot;</span>
@@ -625,7 +636,7 @@ document.write(`
 </div>
 </section>
 <section id="csv">
-<h4>CSV形式のファイルをダウンロードする<a class="headerlink" href="#csv" title="Permalink to this headline">#</a></h4>
+<h4>CSV形式のファイルをダウンロードする<a class="headerlink" href="#csv" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">azure.storage.blob</span> <span class="kn">import</span> <span class="n">BlobClient</span>
@@ -668,7 +679,7 @@ document.write(`
 </div>
 </section>
 <section id="id1">
-<h4>波形ファイルをダウンロードしてそのままメモリに格納する<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>波形ファイルをダウンロードしてそのままメモリに格納する<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">container_name</span><span class="o">=</span><span class="s2">&quot;textbook-2023&quot;</span>
@@ -709,7 +720,7 @@ document.write(`
 </div>
 </section>
 <section id="id2">
-<h4>波形ファイルをダウンロードしてファイルに保存する<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4>波形ファイルをダウンロードしてファイルに保存する<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -742,7 +753,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h4>波形ファイルをダウンロードしながらファイルに保存する<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<h4>波形ファイルをダウンロードしながらファイルに保存する<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;FMP_C1_F23_Piano.wav&#39;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
@@ -798,11 +809,10 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
-                  
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="01_directory.html"
@@ -822,10 +832,7 @@ document.write(`
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -867,7 +874,7 @@ document.write(`
   <div class="footer-item">
     
 <p class="component-author">
-By Manabu Higashida
+By Manabu Higashida, Cybermedia Center, Osaka University, Japan
 </p>
 
   </div>
@@ -900,8 +907,8 @@ By Manabu Higashida
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
   <footer class="bd-footer">
   </footer>
